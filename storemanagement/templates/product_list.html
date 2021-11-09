@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>Product Code</td>
+            <td>Product Name</td>
+            <td>Selling Price</td>
+            <td>
+                <a href="{% url 'product_insert' %}" class="btn btn-outline-success">
+                    <i class="fas fa-plus"></i> Add New
+                </a>
+            </td>
+            <td>
+                <a href="{% url 'sales_invoice' %}" class="btn btn-outline-success">
+                    <i class="fas fa-plus"></i> Generate Sales Invoice
+                </a>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in product_list %}
+            <tr>
+                <td>{{product.productCode}}</td>
+                <td>{{product.productName}}</td>
+                <td>{{product.sellingPrice}}</td>
+                <td>
+                    <a href="{% url 'product_update' product.id %}" class="btn text-secondary px-0">
+                        <i class="far fa-edit fa-lg"></i>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}
